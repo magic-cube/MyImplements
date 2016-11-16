@@ -18,37 +18,82 @@ public class MyArrayList /*implements List */{
 			this.elementData=new Object[initialCapacity];
 		}
 	}
+	//范围检查
+	private void rangeCheck(int index){
+		if(index<0||index>=size){
+			try{
+				throw new Exception();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public int size(){
+		return size;
+	}
 	
 	public void add(String s){
+		//数组的扩容
+		if(size==elementData.length){
+			Object[] newArray = new Object[size*2+1];
+			System.arraycopy(elementData, 0, newArray, 0, elementData.length);
+//			for(int i=0;i<elementData.length;i++){
+//				newArray[i]=elementData[i];
+//			}
+			elementData=newArray;
+		}
 		elementData[size++]=s;
 		//size++;
 	}
 	//重载add，根据索引添加元素
-	public void add(int index,String s){
+	public void add(int index,Object obj){
 		//范围检查
-		if(index>=size||index<0){
-			try {
-				throw new Exception();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		if(index>=size||index<0){
+//			try {
+//				throw new Exception();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+		rangeCheck(index);
 		//数组的扩容
-		Object[] newArray = new Object[size*2+1];
-		//System.arraycopy的使用
-		//System.arraycopy(elementData, 0, newArray, 0, elementData.length);
-		//自己实现arraycopy
-		//实现数组的元素的拷贝
-		for(int i=0;i<elementData.length;i++){
-			newArray[i]=elementData[i];
+		if(size==elementData.length){	
+			Object[] newArray = new Object[size*2+1];
+			//System.arraycopy的使用(被复制的数组，从第几个元素开始复制，要复制到的数组，从第几个元素开始粘贴，要复制的元素的个数)
+			System.arraycopy(elementData,  0, newArray, 0, elementData.length);
+			//自己实现arraycopy
+			//实现数组的元素的拷贝
+//			for(int i=0;i<elementData.length;i++){     /
+//				newArray[i]=elementData[i];
+//			}
+			//将新建数组交给elementData继续使用
+			elementData=newArray;
 		}
-		//将新建数组交给elementData继续使用
-		elementData=newArray;
+		//实现向给定索引添加元素
+		//拷贝
+		System.arraycopy(elementData, index, elementData, index+1, size-index);
+		elementData[index]=obj;
+		
 		size++;
 	}
+	
 	public void remove(int index){
-		
+		rangeCheck(index);
+		//arrayCopy(被复制的数组，从第几个元素开始复制，要复制到的数组，从第几个元素开始粘贴，要复制的元素个数)
+		System.arraycopy(elementData, index+1, elementData, index,size-index-1);
+		//将最后一个位置置为空，之后size--
+		elementData[size--]=null;
 	}
+	public void remove(Object obj){
+		for(int i=0;i<size;i++){
+			if(get(i).equals(obj)){
+				remove(i);
+			}
+		}
+		size--;
+	}
+	
 	public String get(int index){
 		//范围检查
 		if(index>size||index<0){
@@ -58,7 +103,7 @@ public class MyArrayList /*implements List */{
 				e.printStackTrace();
 			}
 		}
-		//未应用泛型之前，我还是强制转换一下吧。。。
+		//未应用泛型
 		String s = (String)elementData[index];
 		return s;
 	}
@@ -83,9 +128,9 @@ public class MyArrayList /*implements List */{
 		size=0;
 	}
 	
-	
+	//测试数据
 	public static void main(String[] args) {
-		MyArrayList  m = new MyArrayList(4);
+		MyArrayList  m = new MyArrayList(5);
 		m.add("haochuan");
 		m.add("madiao");
 		m.add("shuaike");
@@ -96,6 +141,12 @@ public class MyArrayList /*implements List */{
 		System.out.println(m.get(1));
 		System.out.println(m.get(2));
 		System.out.println(m.get(3));
+		m.add(2,"adsd");
+		m.set(2,"aaaa");
+		System.out.println("--------");
+		for(int i = 0;i<m.size();i++){
+			System.out.println(m.get(i));
+		}
 	}
 
 }
