@@ -29,6 +29,29 @@ public class MyLinkedList {
 		}
 		size++;
 	}
+	public void rangeCheck(int index){
+		if(index<0||index>=size){
+			try{
+				throw new Exception();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	public Object get(int index){
+		rangeCheck(index);
+		Node temp=null;
+		if(first!=null){
+			temp=first;
+			for(int i=0;i<index;i++){
+				temp=temp.getNext();
+			}
+		}
+		//用户需要的是obj 而不是结点
+		return temp.getObj();
+	}
+	
+	
 	public int size(){
 		return size;
 	}

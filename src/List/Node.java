@@ -1,23 +1,23 @@
 package List;
 //节点类
 public class Node {
-	private Object previous;
+	private Node previous; //上一个结点
 	private Object obj;
-	private Object next;
+	private Node next;	//下一个结点   使用结点类型
 	
 	public Node(){
 		
 	}
-	public Node(Object previous,Object obj,Object next){
+	public Node(Node previous,Object obj,Node next){
 		this.previous=previous;
 		this.obj=obj;
 		this.next=next;
 	}
 	
-	public Object getPrevious(){
+	public Node getPrevious(){
 		return previous;
 	}
-	public void setPrevious(Object previous){
+	public void setPrevious(Node previous){
 		this.previous=previous;
 	}
 	
@@ -28,10 +28,10 @@ public class Node {
 		this.obj=obj;
 	}
 	
-	public Object getNext(){
+	public Node getNext(){
 		return next;
 	}
-	public void setNext(Object next){
+	public void setNext(Node next){
 		this.next=next;
 	}
 	
