@@ -5,6 +5,15 @@ public class Node {
 	private Object obj;
 	private Object next;
 	
+	public Node(){
+		
+	}
+	public Node(Object previous,Object obj,Object next){
+		this.previous=previous;
+		this.obj=obj;
+		this.next=next;
+	}
+	
 	public Object getPrevious(){
 		return previous;
 	}
