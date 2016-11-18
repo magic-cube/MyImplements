@@ -24,11 +24,13 @@ public class MyLinkedList {
 			 n.setPrevious(last);
 			 n.setObj(obj);
 			 n.setNext(null);
+			 last.setNext(n);
 			 //让新添加的这个结点成为尾结点
 			 last=n;
 		}
 		size++;
 	}
+	
 	public void rangeCheck(int index){
 		if(index<0||index>=size){
 			try{
@@ -38,6 +40,8 @@ public class MyLinkedList {
 			}
 		}
 	}
+	
+
 	public Object get(int index){
 		rangeCheck(index);
 		Node temp=null;
@@ -45,12 +49,36 @@ public class MyLinkedList {
 			temp=first;
 			for(int i=0;i<index;i++){
 				temp=temp.getNext();
+				//temp.setNext(temp);
+				//temp=temp.next;
 			}
 		}
 		//用户需要的是obj 而不是结点
 		return temp.getObj();
 	}
 	
+	public Node node(int index){
+		Node temp=null;
+		if(first!=null){
+			temp=first;
+			for(int i=0;i<index;i++){
+				temp=temp.getNext();
+			}
+		}
+		return temp;
+	}
+	
+	public void remove(int index){
+		rangeCheck(index);
+		Node newNode=node(index);
+		if(newNode!=null){
+			Node up=newNode.getPrevious();
+			Node down=newNode.getNext();
+			up.setNext(down);
+			down.setPrevious(up);
+		}
+		size--;
+	}
 	
 	public int size(){
 		return size;
@@ -62,6 +90,7 @@ public class MyLinkedList {
 		ml.add("bbb");
 		//打印size，测试之前的两次添加是否成功
 		System.out.println(ml.size);
+		System.out.println(ml.get(1));
 	}
 
 }

@@ -1,9 +1,9 @@
 package List;
 //节点类
 public class Node {
-	private Node previous; //上一个结点
-	private Object obj;
-	private Node next;	//下一个结点   使用结点类型
+	/*private*/ Node previous; //上一个结点
+	/*private*/ Object obj;
+	/*private*/ Node next;	//下一个结点   使用结点类型
 	
 	public Node(){
 		
