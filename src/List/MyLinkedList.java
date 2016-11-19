@@ -31,6 +31,24 @@ public class MyLinkedList {
 		size++;
 	}
 	
+	public void add(int index,Object obj){
+		rangeCheck(index);
+		Node findNode=node(index);            //找到的下标为index的Node
+		Node upFindNode=findNode.previous;		//找到结点的上一个结点
+		Node insertNode= new Node();		//新建的要插入的结点
+		
+		//插入结点的过程
+		insertNode.previous=upFindNode;
+		upFindNode.next=insertNode;
+		
+		insertNode.next=findNode;
+		findNode.previous=insertNode;
+		
+		//将元素交给obj
+		insertNode.obj=obj;
+		
+	}
+	
 	public void rangeCheck(int index){
 		if(index<0||index>=size){
 			try{
@@ -88,9 +106,11 @@ public class MyLinkedList {
 		MyLinkedList ml = new MyLinkedList();
 		ml.add("aaa");
 		ml.add("bbb");
-		//打印size，测试之前的两次添加是否成功
+		ml.add(1,"insert");
+		
+		//打印size，测试之前的添加是否成功
 		System.out.println(ml.size);
-		System.out.println(ml.get(1));
+		System.out.println(ml.get(1));        //输出结果为insert即插入成功
 	}
 
 }
