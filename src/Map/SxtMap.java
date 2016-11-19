@@ -1,5 +1,9 @@
 package Map;
-
+/**
+ * 基本实现Map功能，但get时每次都需要遍历，效率较低
+ * @author hc
+ *
+ */
 public class SxtMap {
 	 SxtEntry [] arr= new SxtEntry[100];
 	 private int size;
