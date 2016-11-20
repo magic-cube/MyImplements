@@ -14,11 +14,12 @@ import List.MyLinkedList;
  */
 public class MyHashMap {
 	//用的是我自己实现的链表，导入了List包小的MyLinkedList，当然也可用java.util库下的LinkedList，导入就好
-	MyLinkedList [] arr = new MyLinkedList[999];
+	static final int LENGTH=997;
+	MyLinkedList [] arr = new MyLinkedList[LENGTH];
 
 	private int size;
 	public void put(Object key,Object value){
-		int a=key.hashCode()%999;       //自实现的散列码
+		int a=key.hashCode()%LENGTH;       //自实现的散列码
 		
 		// MyLinkedList list = new MyLinkedList();     //新建的链表                                     ****此处注意不能放在外面，不然每次都会建立一个链表
 		
@@ -32,6 +33,16 @@ public class MyHashMap {
 			list.add(e);                        //将对象放入链表中
 		}else{    
 			//a r r [a] 即那个链表对象
+			
+			//检查键值是否重复，遍历链表
+			MyLinkedList list=arr[a];
+			for(int i=0;i<list.size();i++){
+				Entry e2=(Entry)arr[a].get(i);
+				if(e2.key.equals(key)){
+					e2.value=value;                //键值重复，直接覆盖
+					return ;
+				}
+			}
 			arr[a].add(e);                      //将对象放入链表中
 		}
 		size++;
