@@ -63,12 +63,27 @@ public class MyLinkedList {
 	public Object get(int index){
 		rangeCheck(index);
 		Node temp=null;
+		//以上为原始版本，以下针对查询进行了优化
+//		if(first!=null){
+//			temp=first;
+//			for(int i=0;i<index;i++){
+//				temp=temp.getNext();
+//				//temp.setNext(temp);
+//				//temp=temp.next;
+//			}
+//		}
 		if(first!=null){
 			temp=first;
-			for(int i=0;i<index;i++){
-				temp=temp.getNext();
-				//temp.setNext(temp);
-				//temp=temp.next;
+			//如果index小于size/2  从左边开始找，如果大于，则从右边开始找
+			//size>>1 size右移一位，相当于除以2，但其处理速度要比除以2快的多
+			if(index<(size>>1)){
+				for(int i=0;i<index;i++){
+					temp=temp.next;
+				}
+			}else{
+				for(int i=size-1;i>index;i--){
+					temp=temp.previous;
+				}
 			}
 		}
 		//用户需要的是obj 而不是结点

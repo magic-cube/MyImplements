@@ -19,7 +19,13 @@ public class MyHashMap {
 
 	private int size;
 	public void put(Object key,Object value){
-		int a=key.hashCode()%LENGTH;       //自实现的散列码
+		
+		//因为hashCode计算的可能为负数，所以对他进行处理	
+		int hash=key.hashCode();
+		hash=hash<0?-hash:hash;         //hash小于零返回他的相反数
+		
+		
+		int a=hash%LENGTH;       //自实现的散列码
 		
 		// MyLinkedList list = new MyLinkedList();     //新建的链表                                     ****此处注意不能放在外面，不然每次都会建立一个链表
 		
@@ -46,6 +52,27 @@ public class MyHashMap {
 			arr[a].add(e);                      //将对象放入链表中
 		}
 		size++;
+	}
+	public Object get(Object key){
+		//查询一个值的过程变为了，先计算散列码，然后使用散列码查询数组
+		
+		int hash=key.hashCode();
+		hash=hash<0?-hash:hash;          
+		int a=hash%LENGTH;                //散列码的计算过程
+		
+		if(key!=null){
+			
+			if(arr[a]!=null){
+				for(int i=0;i<arr[a].size();i++){
+					Entry e =(Entry)arr[a].get(i);
+					if(e.key.equals(key)){
+						return e.value;
+					}
+				}
+			}
+			
+		}
+		return null;
 	}
 	public static void main(String[] args) {
 
