@@ -1,5 +1,7 @@
 package Test;
-
+/**
+ * 以list的方式存储
+ */
 import java.util.ArrayList;
 import java.util.List;
 

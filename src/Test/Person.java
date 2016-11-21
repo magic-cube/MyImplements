@@ -1,6 +1,11 @@
 package Test;
+/*通常将这种类称为javaBean,也有称作实体类
+ * 
+ * javaBean这种类,只有属性和set()   get() 方法
+ * 
+ */
 
-public class Person {
+public class Person { 
 	private String name;
 	private String id;
 	private String cls;
