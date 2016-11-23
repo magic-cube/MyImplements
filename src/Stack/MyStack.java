@@ -53,7 +53,7 @@ public class MyStack<T> {
 		return top.end();
 	}
 	
-	
+	//²âÊÔ
 	public static void main(String args[]){
 		MyStack<String> ms = new MyStack<String>();
 		//ÄæĞòÊä³öµÄ×Ö·û´®
