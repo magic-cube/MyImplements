@@ -32,7 +32,7 @@ public class MyIterator1 {
 	public void remove(){
 		//数组移动，移除元素
 		//要复制的数组   从哪开始复制   复制到哪个数组    从哪开始粘贴    复制的长度
-		System.arraycopy(s, cursor, s, cursor+1, this.size-(cursor+1));
+		System.arraycopy(s, cursor+1, s, cursor, this.size-(cursor+1));
 		//实际大小-1
 		this.size--;
 		//游标回退一个

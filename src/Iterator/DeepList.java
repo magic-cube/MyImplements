@@ -1,11 +1,14 @@
 package Iterator;
-
+/**
+ * 添加list的迭代器方法
+ * 匿名内部类
+ */
 import java.util.Arrays;
 import java.util.Iterator;
 
 public class DeepList {
-	Object [] arr ;
-	int size=0;  //容器大小
+	private Object [] arr ;
+	private int size=0;  //容器大小
 	
 	
 	DeepList(){
@@ -17,7 +20,7 @@ public class DeepList {
 	
 	//添加方法接受一个对象
 	public void add(Object obj){
-		if(size==arr.length){
+		if(size==arr.length){      //容量不够，扩容
 			arr=Arrays.copyOf(arr, size*2+1);
 			//或者使用
 //			Object newArray=new Object[size*2+1];
@@ -26,7 +29,9 @@ public class DeepList {
 		}
 		arr[size++]=obj;
 	}
-	
+	public int size(){
+		return this.size;
+	}
 	//List的迭代器方法
 	public Iterator iterator(){
 		return new Iterator(){

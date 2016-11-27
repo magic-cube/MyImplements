@@ -82,7 +82,7 @@ public class DeepIterator implements Iterator{
 		while(it.hasNext()){
 			System.out.println(it.next());
 		}
-		
+		//额这个主题真的是。。。
 
 	}
 
