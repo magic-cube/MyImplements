@@ -30,10 +30,6 @@ public class M {
 				case 4:f.F(plength); break;
 				
 			}
-			System.out.println("空闲分区表剩余情况：");
-			for(Partition i:list){
-				System.out.print(i.size+"---->");
-			}
 			System.out.println();
 			System.out.println("是否继续输入：");
 			System.out.println("1.继续    0.退出");
@@ -81,7 +77,7 @@ public class M {
 			if(size-pSize>=G){
 				list.get(i).size-=pSize;
 				break;
-			}else{
+			}else if(size-pSize<G&&size-pSize>=0) {
 				list.get(i).size=0;
 				break;
 			}
