@@ -18,10 +18,12 @@ public class DemoClassLoader01 {
 		try {
 			Class<?> c=loader.loadClass("HelloWorld");
 			Class<?> c2=loader2.loadClass("HelloWorld");
+			//加载java核心类库中的类，会被引导类加载器加载
+			Class<?> c3=loader2.loadClass("java.lang.String");
 			
 			System.out.println(c.hashCode());
 			System.out.println(c2.hashCode());
-			
+			System.out.println(c3.hashCode());
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
