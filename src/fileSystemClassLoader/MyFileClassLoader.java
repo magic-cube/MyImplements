@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 自定义类加载器的实现
+ * 自定义文件类加载器的实现
  * 仍然选择了双亲委托机制，
  * @author 郝川
  *
