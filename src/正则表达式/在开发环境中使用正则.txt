@@ -1,0 +1,16 @@
+*在开发环境和文本编辑器中使用正则
+	文本编辑器：ctrl+f 查找，选择普通查找或者是正则表达式查找
+	eclipse中：search
+	
+在数据库中也可以使用正则
+	mysql 5.5以上
+	oracle 10g以上
+	
+java程序中使用正则表达式
+	*相关类位于java.util.regex下
+	*类Pattern：
+		-正则表达式的编译表示形式
+		-Pattern p=Pattern.compile(r.int)  //建立正则表达式，并启用相应模式
+	*类Matcher:
+		-通过节食Pattern对character sequence执行匹配操作的引擎
+		-Matcher m=p.matcher(str); //匹配str字符串
